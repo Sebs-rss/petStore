@@ -49,7 +49,7 @@ class Mascota extends Animal {
 
 }
 
-let formulairo = document.querySelector('form');
+let formulario = document.querySelector('form');
 
 let agregando = (event) => {
     event.preventDefault();
@@ -60,6 +60,7 @@ let agregando = (event) => {
     let fono = document.getElementById('fono').value;
     let tipo = document.getElementById('tipo').value;
 
+    // Se elije el tipo de la mascota y muestra el resultado
     switch (tipo) {
         case 'perro':
             let perro = new Mascota(propietario, direccion, fono, tipo, nombreMascota, enfermedad); //creando el objeto 'Mascota'
@@ -81,4 +82,14 @@ let agregando = (event) => {
 let mostarResultado = (valor) => {
     let resultado = document.querySelector('#resultado ul');
     resultado.innerHTML = ""; // Dato vacío para que se rellene con las funciones luego
+    let li1 = document.createElement('li');
+    li1.innerHTML = `${valor.datosPropietario()}`;
+    let li2 = document.createElement('li');
+    li2.innerHTML = `${valor.tipo}, mientras que el nombre de la mascota es: ${valor._nombreA} y su enfermedad es: ${valor._enfermedad}`;
+    resultado.appendChild(li1);
+    resultado.appendChild(li2);
 }
+
+// Se agrega todo al botón de tipo Submit, al final del index
+
+formulario.addEventListener('submit', agregando);
